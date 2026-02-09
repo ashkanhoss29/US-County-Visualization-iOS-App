@@ -1,0 +1,586 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7446EA532F39202B00339206 /* LegacyMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7446EA522F39202B00339206 /* LegacyMapView.swift */; };
+		74EEB7F82DDCA44E0082749A /* USCountiesMapApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EEB7F72DDCA44E0082749A /* USCountiesMapApp.swift */; };
+		74EEB7FA2DDCA44E0082749A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EEB7F92DDCA44E0082749A /* ContentView.swift */; };
+		74EEB7FC2DDCA4510082749A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74EEB7FB2DDCA4510082749A /* Assets.xcassets */; };
+		74EEB7FF2DDCA4510082749A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74EEB7FE2DDCA4510082749A /* Preview Assets.xcassets */; };
+		74EEB8092DDCA4510082749A /* USCountiesMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EEB8082DDCA4510082749A /* USCountiesMapTests.swift */; };
+		74EEB8132DDCA4510082749A /* USCountiesMapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EEB8122DDCA4510082749A /* USCountiesMapUITests.swift */; };
+		74EEB8152DDCA4510082749A /* USCountiesMapUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EEB8142DDCA4510082749A /* USCountiesMapUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		74EEB8052DDCA4510082749A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 74EEB7EC2DDCA44E0082749A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 74EEB7F32DDCA44E0082749A;
+			remoteInfo = Map;
+		};
+		74EEB80F2DDCA4510082749A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 74EEB7EC2DDCA44E0082749A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 74EEB7F32DDCA44E0082749A;
+			remoteInfo = Map;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		7446EA522F39202B00339206 /* LegacyMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyMapView.swift; sourceTree = "<group>"; };
+		74EEB7F42DDCA44E0082749A /* USCountiesMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = USCountiesMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		74EEB7F72DDCA44E0082749A /* USCountiesMapApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USCountiesMapApp.swift; sourceTree = "<group>"; };
+		74EEB7F92DDCA44E0082749A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		74EEB7FB2DDCA4510082749A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		74EEB7FE2DDCA4510082749A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		74EEB8042DDCA4510082749A /* USCountiesMapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = USCountiesMapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		74EEB8082DDCA4510082749A /* USCountiesMapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USCountiesMapTests.swift; sourceTree = "<group>"; };
+		74EEB80E2DDCA4510082749A /* USCountiesMapUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = USCountiesMapUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		74EEB8122DDCA4510082749A /* USCountiesMapUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USCountiesMapUITests.swift; sourceTree = "<group>"; };
+		74EEB8142DDCA4510082749A /* USCountiesMapUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USCountiesMapUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		74EEB7F12DDCA44E0082749A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		74EEB8012DDCA4510082749A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		74EEB80B2DDCA4510082749A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		74EEB7EB2DDCA44E0082749A = {
+			isa = PBXGroup;
+			children = (
+				74EEB7F62DDCA44E0082749A /* USCountiesMap */,
+				74EEB8072DDCA4510082749A /* USCountiesMapTests */,
+				74EEB8112DDCA4510082749A /* USCountiesMapUITests */,
+				74EEB7F52DDCA44E0082749A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		74EEB7F52DDCA44E0082749A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				74EEB7F42DDCA44E0082749A /* USCountiesMap.app */,
+				74EEB8042DDCA4510082749A /* USCountiesMapTests.xctest */,
+				74EEB80E2DDCA4510082749A /* USCountiesMapUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		74EEB7F62DDCA44E0082749A /* USCountiesMap */ = {
+			isa = PBXGroup;
+			children = (
+				74EEB7F72DDCA44E0082749A /* USCountiesMapApp.swift */,
+				74EEB7F92DDCA44E0082749A /* ContentView.swift */,
+				7446EA522F39202B00339206 /* LegacyMapView.swift */,
+				74EEB7FB2DDCA4510082749A /* Assets.xcassets */,
+				74EEB7FD2DDCA4510082749A /* Preview Content */,
+			);
+			path = USCountiesMap;
+			sourceTree = "<group>";
+		};
+		74EEB7FD2DDCA4510082749A /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				74EEB7FE2DDCA4510082749A /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		74EEB8072DDCA4510082749A /* USCountiesMapTests */ = {
+			isa = PBXGroup;
+			children = (
+				74EEB8082DDCA4510082749A /* USCountiesMapTests.swift */,
+			);
+			path = USCountiesMapTests;
+			sourceTree = "<group>";
+		};
+		74EEB8112DDCA4510082749A /* USCountiesMapUITests */ = {
+			isa = PBXGroup;
+			children = (
+				74EEB8122DDCA4510082749A /* USCountiesMapUITests.swift */,
+				74EEB8142DDCA4510082749A /* USCountiesMapUITestsLaunchTests.swift */,
+			);
+			path = USCountiesMapUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		74EEB7F32DDCA44E0082749A /* USCountiesMap */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 74EEB8182DDCA4510082749A /* Build configuration list for PBXNativeTarget "USCountiesMap" */;
+			buildPhases = (
+				74EEB7F02DDCA44E0082749A /* Sources */,
+				74EEB7F12DDCA44E0082749A /* Frameworks */,
+				74EEB7F22DDCA44E0082749A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = USCountiesMap;
+			productName = Map;
+			productReference = 74EEB7F42DDCA44E0082749A /* USCountiesMap.app */;
+			productType = "com.apple.product-type.application";
+		};
+		74EEB8032DDCA4510082749A /* USCountiesMapTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 74EEB81B2DDCA4510082749A /* Build configuration list for PBXNativeTarget "USCountiesMapTests" */;
+			buildPhases = (
+				74EEB8002DDCA4510082749A /* Sources */,
+				74EEB8012DDCA4510082749A /* Frameworks */,
+				74EEB8022DDCA4510082749A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				74EEB8062DDCA4510082749A /* PBXTargetDependency */,
+			);
+			name = USCountiesMapTests;
+			productName = MapTests;
+			productReference = 74EEB8042DDCA4510082749A /* USCountiesMapTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		74EEB80D2DDCA4510082749A /* USCountiesMapUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 74EEB81E2DDCA4510082749A /* Build configuration list for PBXNativeTarget "USCountiesMapUITests" */;
+			buildPhases = (
+				74EEB80A2DDCA4510082749A /* Sources */,
+				74EEB80B2DDCA4510082749A /* Frameworks */,
+				74EEB80C2DDCA4510082749A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				74EEB8102DDCA4510082749A /* PBXTargetDependency */,
+			);
+			name = USCountiesMapUITests;
+			productName = MapUITests;
+			productReference = 74EEB80E2DDCA4510082749A /* USCountiesMapUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		74EEB7EC2DDCA44E0082749A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1420;
+				LastUpgradeCheck = 1420;
+				TargetAttributes = {
+					74EEB7F32DDCA44E0082749A = {
+						CreatedOnToolsVersion = 14.2;
+					};
+					74EEB8032DDCA4510082749A = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 74EEB7F32DDCA44E0082749A;
+					};
+					74EEB80D2DDCA4510082749A = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 74EEB7F32DDCA44E0082749A;
+					};
+				};
+			};
+			buildConfigurationList = 74EEB7EF2DDCA44E0082749A /* Build configuration list for PBXProject "USCountyMap" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 74EEB7EB2DDCA44E0082749A;
+			productRefGroup = 74EEB7F52DDCA44E0082749A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				74EEB7F32DDCA44E0082749A /* USCountiesMap */,
+				74EEB8032DDCA4510082749A /* USCountiesMapTests */,
+				74EEB80D2DDCA4510082749A /* USCountiesMapUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		74EEB7F22DDCA44E0082749A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74EEB7FF2DDCA4510082749A /* Preview Assets.xcassets in Resources */,
+				74EEB7FC2DDCA4510082749A /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		74EEB8022DDCA4510082749A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		74EEB80C2DDCA4510082749A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		74EEB7F02DDCA44E0082749A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74EEB7FA2DDCA44E0082749A /* ContentView.swift in Sources */,
+				7446EA532F39202B00339206 /* LegacyMapView.swift in Sources */,
+				74EEB7F82DDCA44E0082749A /* USCountiesMapApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		74EEB8002DDCA4510082749A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74EEB8092DDCA4510082749A /* USCountiesMapTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		74EEB80A2DDCA4510082749A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74EEB8132DDCA4510082749A /* USCountiesMapUITests.swift in Sources */,
+				74EEB8152DDCA4510082749A /* USCountiesMapUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		74EEB8062DDCA4510082749A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 74EEB7F32DDCA44E0082749A /* USCountiesMap */;
+			targetProxy = 74EEB8052DDCA4510082749A /* PBXContainerItemProxy */;
+		};
+		74EEB8102DDCA4510082749A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 74EEB7F32DDCA44E0082749A /* USCountiesMap */;
+			targetProxy = 74EEB80F2DDCA4510082749A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		74EEB8162DDCA4510082749A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		74EEB8172DDCA4510082749A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		74EEB8192DDCA4510082749A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"USCountiesMap/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Ashkan.Map;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		74EEB81A2DDCA4510082749A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"USCountiesMap/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Ashkan.Map;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		74EEB81C2DDCA4510082749A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Ashkan.MapTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/USCountiesMap.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/USCountiesMap";
+			};
+			name = Debug;
+		};
+		74EEB81D2DDCA4510082749A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Ashkan.MapTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/USCountiesMap.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/USCountiesMap";
+			};
+			name = Release;
+		};
+		74EEB81F2DDCA4510082749A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Ashkan.MapUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Map;
+			};
+			name = Debug;
+		};
+		74EEB8202DDCA4510082749A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Ashkan.MapUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Map;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		74EEB7EF2DDCA44E0082749A /* Build configuration list for PBXProject "USCountyMap" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				74EEB8162DDCA4510082749A /* Debug */,
+				74EEB8172DDCA4510082749A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		74EEB8182DDCA4510082749A /* Build configuration list for PBXNativeTarget "USCountiesMap" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				74EEB8192DDCA4510082749A /* Debug */,
+				74EEB81A2DDCA4510082749A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		74EEB81B2DDCA4510082749A /* Build configuration list for PBXNativeTarget "USCountiesMapTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				74EEB81C2DDCA4510082749A /* Debug */,
+				74EEB81D2DDCA4510082749A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		74EEB81E2DDCA4510082749A /* Build configuration list for PBXNativeTarget "USCountiesMapUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				74EEB81F2DDCA4510082749A /* Debug */,
+				74EEB8202DDCA4510082749A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 74EEB7EC2DDCA44E0082749A /* Project object */;
+}
