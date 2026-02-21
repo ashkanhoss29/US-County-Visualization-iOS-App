@@ -9,7 +9,7 @@ import SwiftUI
 import MapKit
 
 struct LegacyMapView: UIViewRepresentable {
-    let polygons: [IdentifiablePolygon]
+    let polygons: [County]
 
     // 1. Create the MKMapView (UIKit version)
     func makeUIView(context: Context) -> MKMapView {
