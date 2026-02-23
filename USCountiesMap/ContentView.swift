@@ -27,83 +27,171 @@ struct ContentView: View {
     @State private var height : Double = 0
     @State private var worldRect: MKMapRect = .null
     
+    // Interaction State
+    @State private var scale: CGFloat = 1.0
+    @State private var lastScale: CGFloat = 1.0
+    @State private var offset: CGSize = .zero
+    @State private var lastOffset: CGSize = .zero
+    
+    // Selection State
+    @State private var selectedCounty : County?
+    @State private var showSheet = false
+    
     var body: some View {
-        VStack {
-//            LegacyMapView(polygons: data)
+        VStack(spacing: 0) {
+//            LegacyMapView(polygons: counties)
 //                .ignoresSafeArea()
+            HStack {
+                VStack(alignment: .leading) {
+                    Text("County Inspector")
+                        .font(.headline)
+                    Text("\(counties.count) counties loaded")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+                
+                Spacer()
+                
+                Button(action: resetView) {
+                    Label("Reset", systemImage: "arrow.counterclockwise")
+                }
+                .buttonStyle(.bordered)
+                .disabled(scale == 1.0 && offset == .zero)
+            }
+            .padding()
+            .background(.ultraThinMaterial)
             
-            Canvas { context, size in
-                for county in counties {
-                    var polygons : [MKPolygon] = []
+            GeometryReader { geo in
+                Canvas { context, size in
+                    context.translateBy(x: offset.width + size.width / 2, y: offset.height + size.height / 2)
+                    context.scaleBy(x: scale, y: scale)
+                    context.translateBy(x: -size.width / 2, y: -size.height / 2)
                     
-                    if let multiPolygon = county.polygon as? MKMultiPolygon {
-                        for polygon in multiPolygon.polygons {
-                            polygons.append(polygon)
-                        }
-                    }
-                    
-                    if let polygon = county.polygon as? MKPolygon {
-                        polygons.append(polygon)
-                    }
-                    
-                    for polygon in polygons {
-                        let points = polygon.points()
-                        let count = polygon.pointCount
-                        if count == 0 { continue }
+                    for county in counties {
+                        var polygons : [MKPolygon] = []
                         
-                        // 2. Create a SwiftUI Path
-                        var path = Path()
-                        
-                        for i in 0..<count {
-                            let mapPoint = points[i]
-                            
-                            // 3. Map the MKMapPoint to the Canvas 'size'
-                            let x = ((mapPoint.x - worldRect.origin.x) / worldRect.size.width) * size.width
-                            let y = ((mapPoint.y - worldRect.origin.y) / worldRect.size.height) * size.height
-                            
-                            let point = CGPoint(x: x, y: y)
-                            
-                            if i == 0 {
-                                path.move(to: point)
-                            } else {
-                                path.addLine(to: point)
+                        if let multiPolygon = county.polygon as? MKMultiPolygon {
+                            for polygon in multiPolygon.polygons {
+                                polygons.append(polygon)
                             }
                         }
                         
-                        path.closeSubpath()
+                        if let polygon = county.polygon as? MKPolygon {
+                            polygons.append(polygon)
+                        }
                         
-                        // 4. Draw using the SwiftUI GraphicsContext
-    //                            let color = colorFromCSV(county.fips) // Your custom color logic
-                        
-    //                            context.fill(path, with: .color(color))
-                        context.stroke(path, with: .color(.black), lineWidth: 0.2)
+                        for polygon in polygons {
+                            let path = createPath(for: polygon, in: size, rect: worldRect)
+                            
+                            let isSelected = polygon === selectedCounty?.polygon
+                            context.fill(path, with: .color(isSelected ? .orange.opacity(0.6) : .blue.opacity(0.3)))
+                            context.stroke(path, with: .color(isSelected ? .orange : .blue), lineWidth: 0.2 / scale)
+                        }
                     }
+                }
+                .gesture(dragGesture)
+                .gesture(magnificationGesture)
+                .onTapGesture { location in
+                    handleTap(location, in: geo.size)
                 }
             }
             .aspectRatio(mapRatio(), contentMode: .fit)
-            // Attach a DragGesture to the Canvas
-            .gesture(DragGesture(minimumDistance: 0) // minimumDistance: 0 allows immediate tap recognition
-                .onChanged { value in
-                    // Append the current touch location to the array
-//                    locations.append(value.location)
-                }
-                .onEnded { value in
-                    // Optional: perform an action when the gesture ends
-                    print("Drawing ended")
-                }
-            )
+            .clipped()
+            .background(Color(.systemGroupedBackground))
             
 //            Text("Loaded \(data.count) counties")
 //                .padding()
+            
+        }
+        .sheet(isPresented: $showSheet, onDismiss: {
+            selectedCounty = nil
+        }) {
+            PolygonDetailView(county: selectedCounty)
+                .presentationDetents([.medium, .fraction(0.3)])
         }
         .task {
             await loadCounties()
         }
     }
     
+    var dragGesture: some Gesture {
+        DragGesture()
+            .onChanged { value in
+                offset = CGSize(
+                    width: lastOffset.width + value.translation.width,
+                    height: lastOffset.height + value.translation.height
+                )
+            }
+            .onEnded { _ in lastOffset = offset }
+    }
+
+    var magnificationGesture: some Gesture {
+        MagnificationGesture()
+            .onChanged { value in
+                scale = lastScale * value
+            }
+            .onEnded { _ in lastScale = scale }
+    }
+    
+    private func handleTap(_ location: CGPoint, in size: CGSize) {
+        // Reverse the zoom/pan math to find the "true" point in the geometry
+        let adjustedX = (location.x - offset.width - size.width / 2) / scale + size.width / 2
+        let adjustedY = (location.y - offset.height - size.height / 2) / scale + size.height / 2
+        let hitPoint = CGPoint(x: adjustedX, y: adjustedY)
+
+        // Check each polygon
+        for county in counties {
+            var polygons : [MKPolygon] = []
+            
+            if let multiPolygon = county.polygon as? MKMultiPolygon {
+                for polygon in multiPolygon.polygons {
+                    polygons.append(polygon)
+                }
+            }
+            
+            if let polygon = county.polygon as? MKPolygon {
+                polygons.append(polygon)
+            }
+            
+            for polygon in polygons {
+                let path = createPath(for: polygon, in: size, rect: worldRect)
+                if path.contains(hitPoint) {
+                    selectedCounty = county
+                    showSheet = true
+                    return
+                }
+            }
+        }
+        
+        selectedCounty = nil // Deselect if tap lands on empty space
+    }
+    
+    private func createPath(for polygon: MKPolygon, in size: CGSize, rect: MKMapRect) -> Path {
+        var path = Path()
+        let points = polygon.points()
+        for i in 0..<polygon.pointCount {
+            let mp = points[i]
+            let x = CGFloat((mp.x - rect.origin.x) / rect.size.width) * size.width
+            let y = CGFloat((mp.y - rect.origin.y) / rect.size.height) * size.height
+            if i == 0 { path.move(to: CGPoint(x: x, y: y)) }
+            else { path.addLine(to: CGPoint(x: x, y: y)) }
+        }
+        path.closeSubpath()
+        return path
+    }
+    
     private func mapRatio() -> CGFloat {
         guard !worldRect.isNull, worldRect.size.height > 0 else { return CGFloat(1.0) }
         return CGFloat(worldRect.size.width / worldRect.size.height)
+    }
+    
+    private func resetView() {
+        withAnimation(.spring(response: 0.4, dampingFraction: 0.7)) {
+            scale = 1.0
+            lastScale = 1.0
+            offset = .zero
+            lastOffset = .zero
+        }
     }
     
     private func loadCounties() async {
@@ -123,12 +211,27 @@ struct ContentView: View {
         var moreRecordsAvailable = true
             
         while moreRecordsAvailable {
-            let urlString = "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Counties_Generalized_Boundaries/FeatureServer/0/query?where=1%3D1&outFields=*&f=geojson&resultOffset=\(offset)&resultRecordCount=\(pageSize)&geometryPrecision=3"
+            let localData = loadFromDisk(offset: offset)
+            let data: Data
             
-            guard let url = URL(string: urlString) else { break }
-            let (data, _) = try await URLSession.shared.data(from : url)
+            if let cached = localData {
+                // Found it on disk!
+                data = cached
+            } else {
+                // Not on disk, fetch from network
+                let urlString = "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Counties_Generalized_Boundaries/FeatureServer/0/query?where=1%3D1&outFields=*&f=geojson&resultOffset=\(offset)&resultRecordCount=\(pageSize)&geometryPrecision=3"
+                
+                guard let url = URL(string: urlString) else { break }
+                let (downloadedData, _) = try await URLSession.shared.data(from: url)
+                data = downloadedData
+                
+                // Save to disk for next time
+                saveToDisk(data: data, offset: offset)
+            }
+            
             let decoder = MKGeoJSONDecoder()
             let objects = try decoder.decode(data)
+            
             for object in objects {
                 guard let feature = object as? MKGeoJSONFeature,
                       let geometry = feature.geometry.first as? MKOverlay,
@@ -143,14 +246,27 @@ struct ContentView: View {
                 counties.append(county)
             }
             
-            // If we got a full page, there's likely more.
-            // If we got fewer than 2000, we've hit the end.
             if objects.count == pageSize {
                 offset += pageSize
             } else {
                 moreRecordsAvailable = false
             }
         }
+    }
+    
+    private func getLocalURL(for offset: Int) -> URL {
+        let paths = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)
+        return paths[0].appendingPathComponent("counties_offset_\(offset).geojson")
+    }
+
+    private func saveToDisk(data: Data, offset: Int) {
+        let url = getLocalURL(for: offset)
+        try? data.write(to: url)
+    }
+
+    private func loadFromDisk(offset: Int) -> Data? {
+        let url = getLocalURL(for: offset)
+        return try? Data(contentsOf: url)
     }
     
     func postProcess() {
@@ -228,12 +344,61 @@ struct ContentView: View {
 }
 
 struct CountyOverlay: View {
-    let polygon: MKPolygon
+    let polygon: County?
     
     var body: some View {
         Circle()
             .fill(Color.blue.opacity(0.3))
             .frame(width: 5, height: 5)
+    }
+}
+
+struct PolygonDetailView: View {
+    let county: County?
+    
+    // Access the dismiss action from the environment
+    @Environment(\.dismiss) var dismiss
+
+    var body: some View {
+        NavigationView {
+            List {
+                if let county = county {
+                    let poly = county.polygon
+                    Section("Identity") {
+                        LabeledContent("Title", value: county.attributes.FIPS)
+//                        LabeledContent("Points", value: "\(poly.pointCount)")
+                    }
+                    
+                    Section("Geography") {
+                        // Centroid is roughly the middle of the bounding box
+                        let center = poly.coordinate
+                        LabeledContent("Latitude", value: String(format: "%.4f", center.latitude))
+                        LabeledContent("Longitude", value: String(format: "%.4f", center.longitude))
+                    }
+                    
+                    Section("Measurements") {
+                        // Calculate area in Square Meters using the MapRect
+                        let area = poly.boundingMapRect.size.width * poly.boundingMapRect.size.height
+                        LabeledContent("Approx. Area", value: "\(Int(area).formatted()) m²")
+                    }
+                } else {
+                    Text("No data available")
+                }
+            }
+            .navigationTitle("Area Details")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundStyle(.secondary)
+                            .font(.title3)
+                    }
+                }
+            }
+        }
     }
 }
 
