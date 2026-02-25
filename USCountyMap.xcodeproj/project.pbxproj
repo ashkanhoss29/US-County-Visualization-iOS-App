@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7446EA532F39202B00339206 /* LegacyMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7446EA522F39202B00339206 /* LegacyMapView.swift */; };
+		7446EA552F4FB19D00339206 /* CanvasMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7446EA542F4FB19D00339206 /* CanvasMapView.swift */; };
 		74EEB7F82DDCA44E0082749A /* USCountiesMapApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EEB7F72DDCA44E0082749A /* USCountiesMapApp.swift */; };
 		74EEB7FA2DDCA44E0082749A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EEB7F92DDCA44E0082749A /* ContentView.swift */; };
 		74EEB7FC2DDCA4510082749A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74EEB7FB2DDCA4510082749A /* Assets.xcassets */; };
@@ -36,6 +37,7 @@
 
 /* Begin PBXFileReference section */
 		7446EA522F39202B00339206 /* LegacyMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyMapView.swift; sourceTree = "<group>"; };
+		7446EA542F4FB19D00339206 /* CanvasMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasMapView.swift; sourceTree = "<group>"; };
 		74EEB7F42DDCA44E0082749A /* USCountiesMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = USCountiesMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74EEB7F72DDCA44E0082749A /* USCountiesMapApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USCountiesMapApp.swift; sourceTree = "<group>"; };
 		74EEB7F92DDCA44E0082749A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 			children = (
 				74EEB7F72DDCA44E0082749A /* USCountiesMapApp.swift */,
 				74EEB7F92DDCA44E0082749A /* ContentView.swift */,
+				7446EA542F4FB19D00339206 /* CanvasMapView.swift */,
 				7446EA522F39202B00339206 /* LegacyMapView.swift */,
 				74EEB7FB2DDCA4510082749A /* Assets.xcassets */,
 				74EEB7FD2DDCA4510082749A /* Preview Content */,
@@ -263,6 +266,7 @@
 				74EEB7FA2DDCA44E0082749A /* ContentView.swift in Sources */,
 				7446EA532F39202B00339206 /* LegacyMapView.swift in Sources */,
 				74EEB7F82DDCA44E0082749A /* USCountiesMapApp.swift in Sources */,
+				7446EA552F4FB19D00339206 /* CanvasMapView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

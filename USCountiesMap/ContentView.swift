@@ -20,21 +20,19 @@ struct County: Identifiable {
     let attributes: CountyAttributes
 }
 
+struct InteractionState {
+    let defaultScale: CGFloat = 0.9
+    var scale: CGFloat = 0.9
+    var lastScale: CGFloat = 1.0
+    var offset: CGSize = .zero
+    var lastOffset: CGSize = .zero
+    var selectedCounty : County?
+}
+
 struct ContentView: View {
     @State private var counties : [County] = []
-    @State private var isLoading = false
-    @State private var width : Double = 0
-    @State private var height : Double = 0
     @State private var worldRect: MKMapRect = .null
-    
-    // Interaction State
-    @State private var scale: CGFloat = 1.0
-    @State private var lastScale: CGFloat = 1.0
-    @State private var offset: CGSize = .zero
-    @State private var lastOffset: CGSize = .zero
-    
-    // Selection State
-    @State private var selectedCounty : County?
+    @State private var interactionState = InteractionState()
     @State private var showSheet = false
     
     var body: some View {
@@ -56,57 +54,18 @@ struct ContentView: View {
                     Label("Reset", systemImage: "arrow.counterclockwise")
                 }
                 .buttonStyle(.bordered)
-                .disabled(scale == 1.0 && offset == .zero)
+                .disabled(interactionState.scale == interactionState.defaultScale && interactionState.offset == .zero)
             }
             .padding()
             .background(.ultraThinMaterial)
             
-            GeometryReader { geo in
-                Canvas { context, size in
-                    context.translateBy(x: offset.width + size.width / 2, y: offset.height + size.height / 2)
-                    context.scaleBy(x: scale, y: scale)
-                    context.translateBy(x: -size.width / 2, y: -size.height / 2)
-                    
-                    for county in counties {
-                        var polygons : [MKPolygon] = []
-                        
-                        if let multiPolygon = county.polygon as? MKMultiPolygon {
-                            for polygon in multiPolygon.polygons {
-                                polygons.append(polygon)
-                            }
-                        }
-                        
-                        if let polygon = county.polygon as? MKPolygon {
-                            polygons.append(polygon)
-                        }
-                        
-                        for polygon in polygons {
-                            let path = createPath(for: polygon, in: size, rect: worldRect)
-                            
-                            let isSelected = polygon === selectedCounty?.polygon
-                            context.fill(path, with: .color(isSelected ? .orange.opacity(0.6) : .blue.opacity(0.3)))
-                            context.stroke(path, with: .color(isSelected ? .orange : .blue), lineWidth: 0.2 / scale)
-                        }
-                    }
-                }
-                .gesture(dragGesture)
-                .gesture(magnificationGesture)
-                .onTapGesture { location in
-                    handleTap(location, in: geo.size)
-                }
-            }
-            .aspectRatio(mapRatio(), contentMode: .fit)
-            .clipped()
-            .background(Color(.systemGroupedBackground))
-            
-//            Text("Loaded \(data.count) counties")
-//                .padding()
+            CanvasMapView(counties: $counties, worldRect: $worldRect, interactionState: $interactionState, showSheet: $showSheet)
             
         }
         .sheet(isPresented: $showSheet, onDismiss: {
-            selectedCounty = nil
+            interactionState.selectedCounty = nil
         }) {
-            PolygonDetailView(county: selectedCounty)
+            PolygonDetailView(county: interactionState.selectedCounty)
                 .presentationDetents([.medium, .fraction(0.3)])
         }
         .task {
@@ -114,83 +73,12 @@ struct ContentView: View {
         }
     }
     
-    var dragGesture: some Gesture {
-        DragGesture()
-            .onChanged { value in
-                offset = CGSize(
-                    width: lastOffset.width + value.translation.width,
-                    height: lastOffset.height + value.translation.height
-                )
-            }
-            .onEnded { _ in lastOffset = offset }
-    }
-
-    var magnificationGesture: some Gesture {
-        MagnificationGesture()
-            .onChanged { value in
-                scale = lastScale * value
-            }
-            .onEnded { _ in lastScale = scale }
-    }
-    
-    private func handleTap(_ location: CGPoint, in size: CGSize) {
-        // Reverse the zoom/pan math to find the "true" point in the geometry
-        let adjustedX = (location.x - offset.width - size.width / 2) / scale + size.width / 2
-        let adjustedY = (location.y - offset.height - size.height / 2) / scale + size.height / 2
-        let hitPoint = CGPoint(x: adjustedX, y: adjustedY)
-
-        // Check each polygon
-        for county in counties {
-            var polygons : [MKPolygon] = []
-            
-            if let multiPolygon = county.polygon as? MKMultiPolygon {
-                for polygon in multiPolygon.polygons {
-                    polygons.append(polygon)
-                }
-            }
-            
-            if let polygon = county.polygon as? MKPolygon {
-                polygons.append(polygon)
-            }
-            
-            for polygon in polygons {
-                let path = createPath(for: polygon, in: size, rect: worldRect)
-                if path.contains(hitPoint) {
-                    selectedCounty = county
-                    showSheet = true
-                    return
-                }
-            }
-        }
-        
-        selectedCounty = nil // Deselect if tap lands on empty space
-    }
-    
-    private func createPath(for polygon: MKPolygon, in size: CGSize, rect: MKMapRect) -> Path {
-        var path = Path()
-        let points = polygon.points()
-        for i in 0..<polygon.pointCount {
-            let mp = points[i]
-            let x = CGFloat((mp.x - rect.origin.x) / rect.size.width) * size.width
-            let y = CGFloat((mp.y - rect.origin.y) / rect.size.height) * size.height
-            if i == 0 { path.move(to: CGPoint(x: x, y: y)) }
-            else { path.addLine(to: CGPoint(x: x, y: y)) }
-        }
-        path.closeSubpath()
-        return path
-    }
-    
-    private func mapRatio() -> CGFloat {
-        guard !worldRect.isNull, worldRect.size.height > 0 else { return CGFloat(1.0) }
-        return CGFloat(worldRect.size.width / worldRect.size.height)
-    }
-    
     private func resetView() {
         withAnimation(.spring(response: 0.4, dampingFraction: 0.7)) {
-            scale = 1.0
-            lastScale = 1.0
-            offset = .zero
-            lastOffset = .zero
+            interactionState.scale = interactionState.defaultScale
+            interactionState.lastScale = interactionState.defaultScale
+            interactionState.offset = .zero
+            interactionState.lastOffset = .zero
         }
     }
     
@@ -343,15 +231,6 @@ struct ContentView: View {
     }
 }
 
-struct CountyOverlay: View {
-    let polygon: County?
-    
-    var body: some View {
-        Circle()
-            .fill(Color.blue.opacity(0.3))
-            .frame(width: 5, height: 5)
-    }
-}
 
 struct PolygonDetailView: View {
     let county: County?
