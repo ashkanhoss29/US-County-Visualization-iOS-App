@@ -44,8 +44,8 @@ struct CanvasMapView: View {
                     }
                 }
             }
-            .gesture(dragGesture)
-            .gesture(magnificationGesture)
+            .simultaneousGesture(dragGesture)
+            .simultaneousGesture(magnificationGesture)
             .onTapGesture { location in
                 handleTap(location, in: geo.size)
             }

@@ -23,7 +23,7 @@ struct County: Identifiable {
 struct InteractionState {
     let defaultScale: CGFloat = 0.9
     var scale: CGFloat = 0.9
-    var lastScale: CGFloat = 1.0
+    var lastScale: CGFloat = 0.9
     var offset: CGSize = .zero
     var lastOffset: CGSize = .zero
     var selectedCounty : County?
